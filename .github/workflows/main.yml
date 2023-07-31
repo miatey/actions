@@ -4,7 +4,7 @@ env:
   EB_APPLICATION_NAME: "MyAPP"
   EB_ENVIRONMENT_NAME: "MyAPP-env"
   DEPLOY_PACKAGE_NAME: "my_app_${{github.sha }}.zip"
-  AWS_REGION_NAME: ""
+  AWS_REGION_NAME: "us"
 
 on:
   push:
