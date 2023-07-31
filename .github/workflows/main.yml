@@ -1,0 +1,27 @@
+name: CI-CD-Actions
+env:
+  EB_PACKAGE_S3_BUCKET_NAME: "mia-github-actions"
+  EB_APPLICATION_NAME: "MyAPP"
+  EB_ENVIRONMENT_NAME: "MyAPP-env"
+  DEPLOY_PACKAGE_NAME: "my_app_${{github.sha }}.zip"
+  AWS_REGION_NAME: ""
+
+on:
+  push:
+    branches: 
+      - master
+      
+jobs:
+  ci_part:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: git clone repo
+      uses: actions/checkout@v1
+      
+    - name: Create package
+      run: zip -r ${{env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
+      
+
+  
+  
