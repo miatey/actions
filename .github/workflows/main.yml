@@ -1,6 +1,6 @@
 name: CI-CD-Actions
 env:
-  EB_PACKAGE_S3_BUCKET_NAME: "mia-github-actions"
+  EB_PACKAGE_S3_BUCKET_NAME: "troyanawsactions"
   EB_APPLICATION_NAME: "MyAPP"
   EB_ENVIRONMENT_NAME: "MyAPP-env"
   DEPLOY_PACKAGE_NAME: "my_app_${{github.sha }}.zip"
