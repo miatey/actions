@@ -34,6 +34,33 @@ jobs:
       
     - name: The end
       run: echo "CI Part has been done"
+      
+  cd_part:
+    runs-on: ubuntu-latest
+    needs: [ci_part]
+    
+    
+    steps:
+    - name: AWS
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id       : ${{secrets.AWS_ACCESS_KEY_ID}}
+        aws-secret-access-key   : ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region              : ${{secrets.AWS_DEFAULT_REGION}}
+        
+    - name: Create Beanstalk APK
+      run: |
+        aws elasticbeanstalk create-application-version \
+        --application-name ${{ env.EB_APPLICATION_NAME }} \
+        -- source-bundle S3bucket="{{ env.EB_PACKAGE_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }}" \
+        --version-label "Ver-${{ github.sha }}" \
+        --description "CommitSHA-${{ github.sha }}"
+    - name: Update Beanstalk APK
+      run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Ver-${{ github.sha }}"
+      
+    - name: Finish!!!
+      run: echo "Finish!!!"
+      
     
 
   
