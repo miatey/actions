@@ -59,7 +59,7 @@ jobs:
     - name: Update Beanstalk APK
       run: aws elasticbeanstalk update-environment  --environment-id "e-4usykcmz6v" --version-label "Ver-${{ github.sha }}"
       
-    - name: Finish!!!!
+    - name: Finish!!!!!
       run: echo "Finish!!!!!"
       
     
