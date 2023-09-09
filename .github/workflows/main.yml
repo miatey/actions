@@ -12,8 +12,8 @@ on:
       
 jobs:
   ci_part:
-    runs-on: ubuntu-latest
-    
+  #  runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: git clone repo
       uses: actions/checkout@v1
